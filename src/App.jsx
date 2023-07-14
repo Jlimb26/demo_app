@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import Notes from './components/Notes'
+import { Container } from '@mantine/core'
+import Search from './components/Search'
 
 function App() {
   const [notes, setNotes] = useState([
@@ -11,18 +14,13 @@ function App() {
       text: "tes2.1"
     }
   ])
+  const [query, setQuery] = useState("")
 
   return (
-    <>
-      {
-        notes.map(note => (
-          <div>
-            <p>{note.title}</p>
-            <p>{note.text}</p>
-          </div>
-        ))
-      }
-    </>
+    <Container>
+      <Search query={query} setQuery={setQuery} />
+      <Notes notes={notes} query={query}/>
+    </Container>
   )
 }
 

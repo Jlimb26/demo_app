@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Container } from '@mantine/core'
+import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { Routes, Route } from "react-router-dom";
 import Edit from './pages/Edit'
 import Home from './pages/Home'
@@ -18,6 +18,10 @@ function App() {
     }
   ])
   const [query, setQuery] = useState("")
+
+  const [colorScheme, setColorScheme] = useState("light");
+  const toggleColorScheme = (value) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   const remove = (id) => {
     setNotes((notes) => notes.filter((note) => note.id !== id));
@@ -48,21 +52,32 @@ function App() {
 
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Home
-            notes={notes}
-            query={query}
-            setQuery={setQuery}
-            add={add}
-            remove={remove}
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+    >
+      <MantineProvider
+        theme={{ colorScheme }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                notes={notes}
+                query={query}
+                setQuery={setQuery}
+                add={add}
+                remove={remove}
+              />
+            }
           />
-        }
-      />
-      <Route path="/edit" element={<Edit edit={edit} />} />
-    </Routes>
+          <Route path="/edit" element={<Edit edit={edit} />} />
+        </Routes>
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 }
 

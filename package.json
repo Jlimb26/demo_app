@@ -13,6 +13,7 @@
     "@emotion/react": "^11.11.1",
     "@mantine/core": "^6.0.16",
     "@mantine/hooks": "^6.0.16",
+    "@mantine/rte": "^5.10.5",
     "@tabler/icons": "^2.25.0",
     "@tabler/icons-react": "^2.25.0",
     "prop-types": "^15.8.1",

@@ -8,8 +8,8 @@ function App() {
   const [notes, setNotes] = useState([
     {
       id: 1,
-      title: "test1",
-      text: "test1.1"
+      title: "Grab some groceries (10/12)",
+      text: "Cabbage, pork belly, soy sauce"
     },
     {
       id: 2,

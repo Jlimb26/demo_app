@@ -1,8 +1,9 @@
 import { Button, Container, Group, Stack } from "@mantine/core";
-import { TextInput, Textarea } from "@mantine/core";
+import { TextInput } from "@mantine/core";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate, useLocation } from "react-router-dom";
+import { RichTextEditor } from "@mantine/rte"
 
 function Edit(props) {
     const { edit } = props;
@@ -51,15 +52,13 @@ function Edit(props) {
                     value={title}
                     onChange={handleTitleChange}
                 />
-                <Textarea
-                    placeholder="Your note's text"
-                    label="Text"
-                    withAsterisk
-                    autosize
-                    minRows={5}
+                <RichTextEditor
+                    id="rte"
+                    defaultValue={"Your note's text"}
                     value={text}
-                    onChange={handleTextChange}
+                    onChange={setText}
                 />
+
                 <Group position="center" spacing="xl" grow>
                     <Button variant="subtle" onClick={handleCancel}>
                         Cancel
